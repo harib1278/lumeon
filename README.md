@@ -15,21 +15,43 @@ apc.shm_size=32M
 apc.ttl=7200
 apc.enable_cli=1
 apc.serializer=php 
-
-
-
   
 ### Routing information  
 Home - /  
 Single doctor - /doctor/{id}
+Addition of new doctor - /add/{json: string}
 
   
-## API curl command examples:  
+## API curl command examples:
+
+--get all doctors  
+curl -H "Content-Type: application/json" http://localhost:8000/
+
+--view a single doctor
+curl -H "Content-Type: application/json" http://localhost:8000/doctor/1
+
+-- add doctor  
+(this will not work via curl as the API is cache based due to having no database - this means you need something to store the cache data locally e.g https://www.getpostman.com/) 
+curl -H "Content-Type: application/json" -X POST http://localhost:8000/add/{"name":"Dr Ben Jones","patients":{"1":"Tim Horton","2":"Wayne Rooney","3":"Jamie Vardy"}}
+
+--example of postman submission (you must set the submission type to POST data)
+localhost:8000/add/{"name":"Dr Ben Jones","patients":{"1":"Tim Horton","2":"Wayne Rooney","3":"Jamie Vardy"}}
 
 
-## Run time
-As i've not implemented any form of persistent data storage I have used the APCu php caching engine making use of the Symfony specifc methods. This means the data stored in the model must be loaded into the application by
+## IMPORTANT NOTICE FOR RUN TIME ##
+As i've not implemented any form of persistent data storage I have used the APCu php caching engine making use of the Symfony specifc methods. This means the data stored in the model MUST be loaded into the application by
 visiting the index / page first before trying other API endpoints, this is to allow for full functionality of the spec.
+
+## Data example for submission to add a new doctor
+{
+	"name": "Dr Ben Jones",
+	"patients": {
+		"1": "Tim Horton",
+		"2": "Wayne Rooney",
+		"3": "Jamie Vardy"
+	}
+}
+
 
 
  

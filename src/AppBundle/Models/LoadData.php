@@ -36,6 +36,7 @@ class LoadData {
 	}
 
 	public function initialise(){
+		
 		//write the above list to the cache
 		apcu_store('doctors', $this->doctors);
 
@@ -43,15 +44,7 @@ class LoadData {
 
 	public function getDoctors(){
 		//pull the list from the cache and encode as json
-		return json_encode(apcu_fetch('doctors'));
-	}
-
-	public function saveDoctor($doctor){
-
-	}
-
-	public function savePatient($patient){
-		
+		return apcu_fetch('doctors');
 	}
 
 

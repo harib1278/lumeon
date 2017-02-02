@@ -5,3 +5,7 @@ app:
 app:
     resource: "@AppBundle/Models/"
     type:     annotation
+
+abcmy_newpage:
+    pattern:  /add/{doctor}
+    defaults: { _controller: AppBundle:Controller:addDoctor }
