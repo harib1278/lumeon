@@ -24,10 +24,6 @@ function getHospitalPatients() {
 	$hospital = $hospitalRepository->selectById($hospitalId);
 	$patients = $patientRepository->selectByHospital($hospital);
 
-	var_dump($hospital);
-	var_dump($patientRepository);
-	die();
-
 	// Return a list of patients along with the original hospital and a message showing success
 	return new \Symfony\Component\HttpFoundation\JsonResponse(array(
 		'patients' => $patients,
@@ -37,10 +33,3 @@ function getHospitalPatients() {
 }
 
 return getHospitalPatients();
-
-
-/*
-
-
-
-*/

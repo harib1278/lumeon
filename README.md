@@ -72,8 +72,32 @@ Time: 1.72 seconds, Memory: 9.75MB
   
 OK (1 test, 8 assertions)  
     
+
+## Answers to questions:
+1. No routing therefor urls are considered ugly: showhospitalpatients.php?hospitalId vs /patients/show/11  
+	- Accessing the php script like this is considered an example of bad practice  
+	- Routing should be set up that will point to a specific controller class and function  
+	- The business logic should live inside of these interlinked OO controller classes.  
   
- 
+  
+2. Why is there a return statement calling the main function outside the body of a function? It should be inside of the function and the function inside of a class. The class should then be instantiated like: $example = new Example();  and then the getHospitalPatients() method invoked like $example->getHospitalPatients(); this will give you the return value properly  
+  
+  
+3. Properly defined namespaces should be used, the return statements shouldn't be giving the full namespace path to the jsonresponse function you want to use, same for the obbject instantiation e.g \AppBundle\Repository\HospitalRepository();  
+  
+  
+4. There's no access modifier on the main function e.g public/ private or protected.  
+  
+  
+5. Its not in a proper class, its more of a badly written psuedo class, attribute setting outside of any large class structure or function.  
+  
+  
+6. Use of global variables like this is not good, if you want to retrieve get data like this, you must use the symfony component correctly e.g:  
+$request = Request::createFromGlobals();  
+$path = $request->getPathInfo();  
+  
+You are pulling in too many super globals that are not needed for this simple snippet of code.  
+   
   
 ## Lumeon Technical Test
 
