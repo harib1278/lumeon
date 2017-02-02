@@ -1,3 +1,38 @@
+### Installation  
+php app/console server:run  
+
+-- PHP APC caching needed (APCu Version - 4.0.7-5.5):  
+
+sudo apt-get install php5-apcu
+sudo /etc/init.d/apache2 restart  
+  
+-- add to .ini file:  
+  
+[APCu] 
+extension=php_apcu.dll
+apc.enabled=1
+apc.shm_size=32M
+apc.ttl=7200
+apc.enable_cli=1
+apc.serializer=php 
+
+
+
+  
+### Routing information  
+Home - /  
+Single doctor - /doctor/{id}
+
+  
+## API curl command examples:  
+
+
+## Run time
+As i've not implemented any form of persistent data storage I have used the APCu php caching engine making use of the Symfony specifc methods. This means the data stored in the model must be loaded into the application by
+visiting the index / page first before trying other API endpoints, this is to allow for full functionality of the spec.
+
+
+ 
 ## Lumeon Technical Test
 
 
