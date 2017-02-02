@@ -59,7 +59,8 @@ visiting the index / page first before trying other API endpoints, this is to al
   
 ## Unit tests  
 -- tests are very basic but still effective, this was owing to the time constraints of the test  
-To run all: phpunit -c app/  
+To run all: 
+phpunit -c app/  
   
 A successful running of the tests should look like:  
 
@@ -73,6 +74,7 @@ OK (1 test, 8 assertions)
     
   
  
+  
 ## Lumeon Technical Test
 
 
