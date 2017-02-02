@@ -19,9 +19,7 @@ class DefaultController extends Controller
 	*	One must load the index of the application first to load the data into memory
 	*/	
 
-
-	//cache doctor object
-
+	//cache doctor object - no longer needed for run time.
 	protected $doctorsList;
 	
 
@@ -54,8 +52,6 @@ class DefaultController extends Controller
             ))
         );
     }
-
-
 
     /**
      * @Route("/doctor/{id}", name="doctors", defaults={"_format": "json"})
@@ -95,10 +91,22 @@ class DefaultController extends Controller
 	 */
     public function addDoctor($data){
 
-    	$arr = json_decode($data, true);
+    	if(!isset($data) || $data === NULL){
+    		$error = $this->errorHandler(3);
+    	}
 
+    	$arr = json_decode($data, true);
     	
 
+    	if(!isset($arr['name'])){
+    		$error = $this->errorHandler(4);
+    	}
+
+    	if($arr['name'] === NULL || $arr['name'] === ''){
+    		$error = $this->errorHandler(5);
+    	}
+
+    	//load the doctor list from cache
     	$doctors = $this->loadCache();  	
 
     	//add to end of doctors and increment array index
@@ -110,7 +118,7 @@ class DefaultController extends Controller
     	//load from cache again - just to make sure
     	$doctors = $this->loadCache();
 
-		//$error = $this->errorHandler(1);
+		//$error = $this->errorHandler(3);
 		if(isset($error)){
 	    	return new Response(
 	            json_encode($error)
@@ -133,7 +141,6 @@ class DefaultController extends Controller
     	return apcu_fetch('doctors');
     }
 
-
     private function initialise(){
 
     	//make the methods of the data object available in the controller
@@ -143,15 +150,18 @@ class DefaultController extends Controller
     	$this->doctorsList->initialise();
     }
 
-    //add patient
-
-    //add both
-
     private function errorHandler($i){
     	$errors = array(
-    		1 => 'Error: No Doctors found',
-    		2 => 'Error: No patients found',
-    		3 => 'Error: Incorrect parameters'
+    		1 => array(
+    			'msg' => 'Error: No Doctors found.'),
+    		2 => array(
+    			'msg' => 'Error: No patients found.'),
+    		3 => array(
+    			'msg' => 'Error: Data cannot be blank.'),
+    		4 => array(
+    			'msg' => 'Error: Doctors attribute not correctly set, check spelling.'),
+    		5 => array(
+    			'msg' => 'Error: Name cannot be blank.')
     	);
 
     	return json_encode($errors[$i]);

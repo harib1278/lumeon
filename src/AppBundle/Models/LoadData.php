@@ -4,12 +4,7 @@ namespace AppBundle\Models;
 
 use Symfony\Component\HttpFoundation\Response;
 
-class LoadData {
-	//make 1 function to initialise the app and load the initial data into cache
-
-	//make one then to get the data
-
-	//make one to append to the data
+class LoadData {	
 	
 	protected $doctors;
 
@@ -35,17 +30,9 @@ class LoadData {
 		);
 	}
 
-	public function initialise(){
-		
+	public function initialise(){		
 		//write the above list to the cache
 		apcu_store('doctors', $this->doctors);
-
 	}
-
-	public function getDoctors(){
-		//pull the list from the cache and encode as json
-		return apcu_fetch('doctors');
-	}
-
-
+	
 }
