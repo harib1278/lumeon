@@ -1,5 +1,5 @@
 ### Installation commands  
--- install dependencies using composer
+-- install dependencies using composer  
 php composer.phar install
 
 -- start the symfony server  
@@ -36,8 +36,7 @@ curl -H "Content-Type: application/json" http://localhost:8000/
 --view a single doctor  
 curl -H "Content-Type: application/json" http://localhost:8000/doctor/1  
   
--- add doctor    
-(this will not work via curl as the API is cache based due to having no database - this means you need something to store the cache data locally e.g https://www.getpostman.com/)   
+-- add doctor (this will not work via curl as the API is cache based due to having no database - this means you need something to store the cache data locally e.g https://www.getpostman.com/)   
 curl -H "Content-Type: application/json" -X POST http://localhost:8000/add/{"name":"Dr Ben Jones","patients":{"1":"Tim Horton","2":"Wayne Rooney","3":"Jamie Vardy"}}  
   
 --example of postman submission (you must set the submission type to POST data)  
@@ -50,14 +49,17 @@ visiting the index / page first before trying other API endpoints, this is to al
   
 ## Data example for submission to add a new doctor  
 {  
-	"name": "Dr Ben Jones",  
-	"patients": {  
-		"1": "Tim Horton",   
-		"2": "Wayne Rooney",  
-		"3": "Jamie Vardy"  
-	}  
+  	"name": "Dr Ben Jones",  
+  	"patients": {  
+  		"1": "Tim Horton",   
+  		"2": "Wayne Rooney",  
+  		"3": "Jamie Vardy"  
+  	}  
 }  
- 
+  
+## Unit tests  
+To run all: phpunit -c app/  
+
   
 
  

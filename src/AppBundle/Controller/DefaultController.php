@@ -33,7 +33,7 @@ class DefaultController extends Controller
         return new Response(
             json_encode(array(
             	'doctors' => $this->loadCache(),
-            	'msg'	  => 'API initialised Here are all the doctors. If you need to load all of the doctors again then please use the /all endpoint, loading this index will result in re initialisation of the data array back to default'
+            	'msg'	  => 'API initialised! Here are all the doctors. If you need to load all of the doctors again then please use the /all endpoint, loading this index will result in re initialisation of the data array back to default'
             ))
         );
     }
