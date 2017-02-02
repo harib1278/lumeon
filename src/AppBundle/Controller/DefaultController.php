@@ -97,12 +97,10 @@ class DefaultController extends Controller
 
     	$arr = json_decode($data, true);
     	
-
+    	//handle incorrectly set params
     	if(!isset($arr['name'])){
     		$error = $this->errorHandler(4);
-    	}
-
-    	if($arr['name'] === NULL || $arr['name'] === ''){
+    	} elseif($arr['name'] === NULL || $arr['name'] === ''){
     		$error = $this->errorHandler(5);
     	}
 
@@ -118,14 +116,13 @@ class DefaultController extends Controller
     	//load from cache again - just to make sure
     	$doctors = $this->loadCache();
 
-		//$error = $this->errorHandler(3);
 		if(isset($error)){
 	    	return new Response(
 	            json_encode($error)
 	        );
     	}   
 
-        // ... return a JSON response with the post
+        // return a JSON response with the updated list
         return new Response(
             json_encode($doctors)
         );

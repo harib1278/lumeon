@@ -9,7 +9,7 @@ class LoadData {
 	protected $doctors;
 
 	public function __construct() {
-		// Hardcodethe data for now
+		// this is the default data array loaded into memory upon initialisation of the API
 		$this->doctors = array(
 			1 => array(
 				'name' => 'Dr John Smith',
@@ -34,5 +34,5 @@ class LoadData {
 		//write the above list to the cache
 		apcu_store('doctors', $this->doctors);
 	}
-	
+
 }
