@@ -56,8 +56,7 @@ class DefaultController extends Controller
     /**
      * @Route("/doctor/{id}", name="doctors", defaults={"_format": "json"})
      */
-    public function getDoctorAction($id){
-    	
+    public function getDoctorAction($id){    	
     	
     	$docs = $this->loadCache();
     	

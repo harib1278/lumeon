@@ -58,10 +58,20 @@ visiting the index / page first before trying other API endpoints, this is to al
 }  
   
 ## Unit tests  
+-- tests are very basic but still effective, this was owing to the time constraints of the test  
 To run all: phpunit -c app/  
-
   
+A successful running of the tests should look like:  
 
+PHPUnit 4.8.34 by Sebastian Bergmann and contributors.  
+  
+.  
+  
+Time: 1.72 seconds, Memory: 9.75MB  
+  
+OK (1 test, 8 assertions)  
+    
+  
  
 ## Lumeon Technical Test
 

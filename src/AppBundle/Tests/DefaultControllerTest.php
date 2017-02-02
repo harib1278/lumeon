@@ -10,10 +10,11 @@ require('vendor/autoload.php');
 class DefaultControllerTest extends WebTestCase{
 
 	public function testStatus(){
+		
         $client = static::createClient();
 
         /**
-        *	/ index API initialisation
+        *	/ : Index API initialisation
         */
 
         $crawler = $client->request('GET', '/');
@@ -44,7 +45,7 @@ class DefaultControllerTest extends WebTestCase{
 		$this->assertContains('Here are all the doctors', $client->getResponse()->getContent());
 
 		/**
-        *	/doctor/1 check a single doctor is returned
+        *	/doctor/1 : Check a single doctor is returned
         */
 
         //get a single doctor
@@ -61,7 +62,7 @@ class DefaultControllerTest extends WebTestCase{
 
 
 		/**
-		*	/add/{json} Check the add endpoint works
+		*	/add/{json} : Check the add endpoint works
 		*/
 		$data = array(
 			'name' => 'Dr Test-Name',
