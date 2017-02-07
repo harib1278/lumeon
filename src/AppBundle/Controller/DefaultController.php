@@ -27,7 +27,6 @@ class DefaultController extends Controller
      * @Route("/", name="homepage", defaults={"_format": "json"})
      */
     public function indexAction(){
-	
     	$this->initialise();
 
         return new Response(
@@ -42,8 +41,6 @@ class DefaultController extends Controller
      * @Route("/all", name="all", defaults={"_format": "json"})
      */
     public function allAction(){
-	
-    	$this->initialise();
 
         return new Response(
             json_encode(array(
